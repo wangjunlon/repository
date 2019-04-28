@@ -1,0 +1,59 @@
+package ${package.Controller};
+
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${table.entityName};
+import org.springframework.web.bind.annotation.RequestBody;
+<% if(restControllerStyle){ %>
+import org.springframework.web.bind.annotation.RestController;
+<% }else{ %>
+import org.springframework.stereotype.Controller;
+<% } %>
+<% if(isNotEmpty(superControllerClassPackage)){ %>
+import ${superControllerClassPackage};
+<% } %>
+
+/**
+ * <p>
+ * ${table.comment!} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+<% if(restControllerStyle){ %>
+@RestController
+<% }else{ %>
+@Controller
+<% } %>
+@RequestMapping("<% if(isNotEmpty(package.ModuleName)){ %>/${package.ModuleName}<% } %>/<% if(isNotEmpty(controllerMappingHyphenStyle)){ %>${controllerMappingHyphen}<% }else{ %>${table.entityPath}<% } %>")
+<% if(kotlin){ %>
+class ${table.controllerName}<% if(isNotEmpty(superControllerClass)){ %> : ${superControllerClass}()<% } %>
+<% }else{ %>
+    <% if(isNotEmpty(superControllerClass)){ %>
+public class ${table.controllerName} extends ${superControllerClass} {
+    <% }else{ %>
+public class ${table.controllerName} {
+        @Autowired
+        private ${table.serviceName} ${table.name}Service;
+    <% } %>
+        @RequestMapping("/queryList${table.entityName}")
+        public String queryList${table.entityName}(@RequestBody String json){
+                return ${table.name}Service.queryList${table.entityName}(json);
+        }
+        @RequestMapping("/insert${table.entityName}")
+        public String insert${table.entityName}(@RequestBody String json){
+               return  ${table.name}Service.insert${table.entityName}(json);
+        }
+        @RequestMapping("/update${table.entityName}")
+        public String update${table.entityName}(@RequestBody String json){
+               return  ${table.name}Service.update${table.entityName}(json);
+        }
+         @RequestMapping("/delete${table.entityName}")
+         public String delete${table.entityName}(@RequestBody String json){
+              return  ${table.name}Service.delete${table.entityName}(json);
+         }
+}
+<% } %>

@@ -1,0 +1,82 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.unicomcity.common.controller.MessageObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.unicomcity.common.controller.MessageUtils;
+
+/**
+ * <p>
+ * ${table.comment!} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+<% if(kotlin){ %>
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+}
+<% }else{ %>
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+            @Autowired
+            private ${table.mapperName} ${table.name}Mapper;
+             public String queryList${table.entityName}(String json){
+                    MessageObject messageObject =  MessageUtils.ObectToClass(json, ${table.entityName}.class);
+                    ${table.entityName}  _${table.name}_querylist = (${table.entityName}) messageObject.getContent();
+                    QueryWrapper<${table.entityName}> _${table.name}_querylist_wrapper = new QueryWrapper<>();
+                    <% for(field in table.fields){
+                    if(!field.keyIdentityFlag){%>
+                    _${table.name}_querylist_wrapper.eq("${field.name}",_${table.name}_querylist.get${field.capitalName}());
+                    <%}}%>
+                    Page<${table.entityName}> _${table.name}_querylist_page = new Page<>(messageObject.getPagesize(),messageObject.getCurrent());
+                    IPage<${table.entityName}> _${table.name}_query_ipage = this.page(_${table.name}_querylist_page,_${table.name}_querylist_wrapper);
+                    messageObject.setCode("1000");
+                    messageObject.setPages(_${table.name}_query_ipage.getTotal());
+                    messageObject.setContent(_${table.name}_querylist_page.getRecords());
+                    return MessageUtils.ObjectTojson(messageObject);
+             }
+             public String insert${table.entityName}(String json){
+                    MessageObject messageObject =  MessageUtils.ObectToClass(json, ${table.entityName}.class);
+                     ${table.entityName} _${table.name}_insert = ( ${table.entityName}) messageObject.getContent();
+                    int _${table.name}_insert_rep =  ${table.name}Mapper.insert(_${table.name}_insert);
+                    if(_${table.name}_insert_rep>0){
+                        messageObject.setCode("1000");
+                        messageObject.setContent("您新增成功");
+                    }
+                    return MessageUtils.ObjectTojson(messageObject);
+             }
+             public String update${table.entityName}(String json){
+                    MessageObject messageObject =  MessageUtils.ObectToClass(json,${table.entityName}.class);
+                    ${table.entityName} _${table.name}_update = (  ${table.entityName}) messageObject.getContent();
+                    UpdateWrapper _${table.name}_update_wrapper = new UpdateWrapper();
+                     _${table.name}_update_wrapper.eq("id",_${table.name}_update.getId());
+                    boolean _${table.name}_update_rep =  this.update(_${table.name}_update_wrapper);
+                    if(_${table.name}_update_rep){
+                        messageObject.setCode("1000");
+                        messageObject.setContent("您新增成功");
+                    }
+                    return MessageUtils.ObjectTojson(messageObject);
+             }
+             public String delete${table.entityName}(String json){
+                     MessageObject messageObject =  MessageUtils.ObectToClass(json,${table.entityName}.class);
+                     ${table.entityName} _${table.name}_delete = (${table.entityName}) messageObject.getContent();
+                     QueryWrapper _${table.name}_delete_wrapper = new QueryWrapper();
+                     _${table.name}_delete_wrapper.eq("id",_${table.name}_delete.getId());
+                     boolean _${table.name}_delete_rep =  this.remove(_${table.name}_delete_wrapper);
+                     if(_${table.name}_delete_rep){
+                         messageObject.setCode("1000");
+                         messageObject.setContent("您新增成功");
+                     }
+                     return MessageUtils.ObjectTojson(messageObject);
+             }
+}
+<% } %>

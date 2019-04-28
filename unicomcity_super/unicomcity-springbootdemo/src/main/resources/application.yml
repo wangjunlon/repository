@@ -1,0 +1,5 @@
+# Spring配置
+#dev开发环境指本机服务 prod生成环境指部署上线环境 test测试环境指外网测试环境
+spring:
+  profiles:
+    active: test

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-common/unicomcity-common.iml" filepath="$PROJECT_DIR$/unicomcity-common/unicomcity-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-education/unicomcity-education.iml" filepath="$PROJECT_DIR$/unicomcity-education/unicomcity-education.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-generator/unicomcity-generator.iml" filepath="$PROJECT_DIR$/unicomcity-generator/unicomcity-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-im/unicomcity-im.iml" filepath="$PROJECT_DIR$/unicomcity-im/unicomcity-im.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-junit/unicomcity-junit.iml" filepath="$PROJECT_DIR$/unicomcity-junit/unicomcity-junit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-log/unicomcity-log.iml" filepath="$PROJECT_DIR$/unicomcity-log/unicomcity-log.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-mq/unicomcity-mq.iml" filepath="$PROJECT_DIR$/unicomcity-mq/unicomcity-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-mybatis/unicomcity-mybatis.iml" filepath="$PROJECT_DIR$/unicomcity-mybatis/unicomcity-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-redis/unicomcity-redis.iml" filepath="$PROJECT_DIR$/unicomcity-redis/unicomcity-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-shiro/unicomcity-shiro.iml" filepath="$PROJECT_DIR$/unicomcity-shiro/unicomcity-shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity-springbootdemo/unicomcity-springbootdemo.iml" filepath="$PROJECT_DIR$/unicomcity-springbootdemo/unicomcity-springbootdemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unicomcity_super.iml" filepath="$PROJECT_DIR$/unicomcity_super.iml" />
+    </modules>
+  </component>
+</project>
